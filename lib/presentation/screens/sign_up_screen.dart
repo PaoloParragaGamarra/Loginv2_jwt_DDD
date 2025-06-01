@@ -102,17 +102,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   username: txtName.text,
                   roles: [selectedRole!],
                 );
-                final token = await signUpUseCase.execute(user, txtPassword.text);
+                final result = await signUpUseCase.execute(user, txtPassword.text);
 
-                if (token != null) {
-                  final prefs = await SharedPreferences.getInstance();
-                  await prefs.setString('jwt_token', token);
-
+                if (result != null) {
                   if (mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('User created successfully!')),
+                      const SnackBar(content: Text('User created successfully! Please sign in.')),
                     );
-                    Navigator.pushReplacementNamed(context, '/roles');
+                    Navigator.pushReplacementNamed(context, '/sign-in');
                   }
                 } else {
                   if (mounted) {

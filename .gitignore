@@ -30,6 +30,8 @@ migrate_working_dir/
 /build/
 *.g.dart
 *.freezed.dart
+pubspec.lock
+.metadata
 
 # Symbolication related
 app.*.symbols
